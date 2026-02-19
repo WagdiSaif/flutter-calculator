@@ -1,50 +1,51 @@
-
-
-import 'package:calculator/provider/calculator_setting.dart';
+import 'package:calculator/screens/home.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'provider/calculator_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:provider/provider.dart';
-
 import 'apptheme/theme.dart';
-import 'provider/exprisson_result.dart';
-import 'screens/home.dart';
+import 'provider/expression_evaluator.dart';
 
-
-
-
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Future.wait([CalculatorSetting.init()]);
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const  MyApp());
+  runApp(const MyApp());
 }
- 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
- 
-  
     return MultiProvider(
-   providers: [
-   //ExpressionResult
-   ChangeNotifierProvider<ExpressionResult>(create:(_)=> ExpressionResult(),)
-   ,ChangeNotifierProvider<CalculatorSetting>(create:(_)=> CalculatorSetting.instance,)],
+      providers: [
+        ChangeNotifierProvider<ExpressionEvaluator>(
+          create: (_) => ExpressionEvaluator(),
+        ),
+        ChangeNotifierProvider<CalculatorSetting>(
+          create: (_) => CalculatorSetting(),
+        ),
+      ],
       builder: (context, child) {
-        ///
-        //final setting=CalculatorSetting.instance;
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Calculator',
-          theme:appTheme,
-          themeMode: ThemeMode.system,
-          
-          
-home: Home(),          // routerConfig: Home(),
+        return Selector<CalculatorSetting, bool>(
+          // Selector  only rebuilds on theme change
+          selector: (context, cal) => cal.isLightModeThemeState,
+          builder: (context, _, _) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Calculator',
+              theme: appTheme,
+              themeMode: ThemeMode.system,
+
+              home: Home(),
+            );
+          },
         );
-      }
+      },
     );
   }
 }

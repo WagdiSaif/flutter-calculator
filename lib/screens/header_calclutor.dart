@@ -1,62 +1,109 @@
 import 'package:calculator/apptheme/theme.dart';
-import 'package:calculator/provider/exprisson_result.dart';
+import 'package:calculator/model/history_item.dart';
+import 'package:calculator/provider/expression_evaluator.dart';
+import 'package:calculator/provider/hsitory_provider.dart';
 import 'package:flutter/material.dart';
+
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:calculator/utils/extention.dart';
 
 class HeaderCalclutor extends StatelessWidget {
-  const HeaderCalclutor({
-    required this.width,
-    required this.height,
-    required this.globalKey,
-    super.key,
-  });
-  final double width;
-  final double height;
+  HeaderCalclutor({required this.globalKey, super.key});
+
   final GlobalKey globalKey;
+
+  final hiveBox = HistoryProvider.instance.listenable();
 
   @override
   Widget build(BuildContext context) {
-    final expressionResult = context.watch<ExpressionResult>();
-    return Column(
+    return Container(
       key: globalKey,
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          decoration: BoxDecoration(),
-          constraints: BoxConstraints(
-            minHeight: height,
-            maxHeight: double.infinity,
-          ),
-          padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(),
+      constraints: BoxConstraints(
+        minHeight: 100.0.sh(context),
+        maxHeight: double.infinity,
+        minWidth: 100.0.sw(context),
+      ),
+      padding: EdgeInsets.all(5),
 
-          alignment: Alignment.bottomRight,
-          width: width,
-          // height: height,
-          child: Column(children: [
-            ...List.generate(1, (i) => Align(
-            alignment: Alignment.bottomRight,
-            child: Text('  ${expressionResult.getResultEvaluate}',style: appTheme.textTheme.bodySmall,),
-          )),
-          ],)
-        ),
-        // SizedBox(
-        //   height: kToolbarHeight / 4,
-        // ),
-        Container(
-          padding: EdgeInsets.all(9),
-          //color: Colors.red,
-          alignment: Alignment.centerRight,
-          width: width,
-          height: height * .10,
-          child: Text(
-            expressionResult.getExperssion,
-            style: appTheme.textTheme.displayLarge,
-            maxLines: 2,
+      alignment: Alignment.bottomRight,
+      width: (100.0).sw(context),
+      child: Column(
+        children: [
+          ValueListenableBuilder<Box<HistoryItem>>(
+            valueListenable: hiveBox,
+            builder: (context, box, _) {
+              final items = box.values.toList();
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    if (items.isNotEmpty)
+                      Column(   crossAxisAlignment: CrossAxisAlignment.end,
+                        children: List.generate(
+                          items.length,
+                          (index) => Align(
+                            alignment: Alignment.bottomRight,
+                            child: Column(   crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '  ${items[index].expression} ',
+                                  style: appTheme.textTheme.bodySmall,
+                                ),
+                                Text(
+                                  '= ${items[index].result}',
+                                  style: appTheme.textTheme.bodySmall,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ).toList(),
+                      ),
+                  ],
+                ),
+              );
+            },
           ),
-        ),
-
-        SizedBox(height: 10),
-      ],
+        
+          Container(
+            padding: EdgeInsets.all(9),
+     
+            alignment: Alignment.centerRight,
+            width: (100.0).sw(context),
+          
+            child: Selector<ExpressionEvaluator, (String, String)>(
+              selector: (context, expr) =>
+                  (expr.getExpression, expr.getResultsEvaluator),
+              builder: (context, value, child) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      value.$1.isEmpty
+                          ? "0"
+                          : value.$1.replaceAll('*', 'x').replaceAll("/", "÷"),
+                      style: appTheme.textTheme.displayLarge,
+                      maxLines: 1,
+                    ),
+                    value.$2.isNotEmpty ? SizedBox(height: 10) : SizedBox(),
+                    //results
+                    value.$2.isNotEmpty
+                        ? Text(
+                            value.$2,
+                            style: appTheme.textTheme.displayLarge!.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 1,
+                          )
+                        : const SizedBox(),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
