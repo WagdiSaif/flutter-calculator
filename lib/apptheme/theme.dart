@@ -7,6 +7,8 @@ class AppTheme {
   static final ThemeData _lightTheme = ThemeData(
     dividerTheme: DividerThemeData(thickness: 2, color: Color(0xFFE2E5EA)),
     appBarTheme: AppBarTheme(
+      titleTextStyle: TextStyle(color: Colors.black, fontSize: 15),
+      iconTheme: IconThemeData(color: Colors.orange),
       foregroundColor: Colors.grey[400],
       elevation: 0.0,
       backgroundColor: Color(0xFFFFFFFF),
@@ -67,14 +69,12 @@ class AppTheme {
   //dark Theme
 
   static final ThemeData _darkTheme = ThemeData(
-     iconTheme: IconThemeData(color: Colors.orange),
-   iconButtonTheme: IconButtonThemeData(
+    iconTheme: IconThemeData(color: Colors.orange),
+    iconButtonTheme: IconButtonThemeData(
       style: ElevatedButton.styleFrom(foregroundColor: Colors.orange),
     ),
-        dividerTheme: DividerThemeData(thickness: 2, color: Colors.grey),
+    dividerTheme: DividerThemeData(thickness: 2, color: Colors.grey),
     textTheme: TextTheme(
-      
-      
       labelMedium: TextStyle(
         color: Color(0xFFFFFFFF),
         fontSize: 18,
@@ -100,29 +100,32 @@ class AppTheme {
         fontWeight: FontWeight.normal,
         color: Colors.grey,
       ),
-   
     ),
-    
+
     scaffoldBackgroundColor: Color(0xFF121212),
 
     brightness: Brightness.dark,
     primaryColor: Color(0xFF121212),
 
-    appBarTheme: AppBarTheme(color: Color(0xFF000000)),
-
+    appBarTheme: AppBarTheme(
+      elevation: 0.0,
+      titleTextStyle: TextStyle(color: Colors.white, fontSize: 15),
+      iconTheme: IconThemeData(color: Colors.orange),
+      backgroundColor: Color(0xFF000000), // Pure black
+      foregroundColor: Colors.white,
+      surfaceTintColor: Colors.transparent,
+      centerTitle: true,
+    ),
 
     colorScheme: ColorScheme.dark(
-      
       onPrimary: Color(0xFFFF8D0F),
 
-    primary: const Color(0xFFFF8D0F),
+      primary: const Color(0xFFFF8D0F),
       background: Color(0xFF000000),
       surface: Color(0xFF1E1E1E),
       brightness: Brightness.dark,
       surfaceVariant: Color(0xFF2D2D2D),
       surfaceBright: Color(0xFF383838),
-      
-      
     ),
   );
   // Use this tool in debug mode
