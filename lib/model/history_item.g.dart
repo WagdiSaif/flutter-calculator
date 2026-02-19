@@ -18,7 +18,7 @@ class HistoryItemAdapter extends TypeAdapter<HistoryItem> {
     };
     return HistoryItem(
       expression: fields[0] as String,
-      result: fields[1] as num,
+      result: fields[1] as String,
       dateTime: fields[2] as DateTime,
     );
   }

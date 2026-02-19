@@ -63,7 +63,7 @@ class CalculatorSetting extends ChangeNotifier {
 
   static Future<void> init() async {
     Hive.registerAdapter(HistoryItemAdapter());
-    await Hive.openBox<HistoryItem>('HistoryItem');
+    await Hive.openBox<HistoryItem>('HistoryItems');
     await Hive.openBox<bool>('ThemeState');
   }
 

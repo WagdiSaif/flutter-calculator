@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 class HistoryProvider{
 static Box<HistoryItem>? _hiveBox;
 
-static Box<HistoryItem> get instance => _hiveBox ?? Hive.box<HistoryItem>('HistoryItem');
+static Box<HistoryItem> get instance => _hiveBox ?? Hive.box<HistoryItem>('HistoryItems');
  static void addCalculation(HistoryItem historyItem) async {
  await instance.add(historyItem);
 }

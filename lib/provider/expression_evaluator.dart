@@ -1,5 +1,6 @@
 import 'package:calculator/model/history_item.dart';
 import 'package:calculator/provider/hsitory_provider.dart';
+import 'package:calculator/utils/extention.dart';
 
 import 'package:calculator/utils/helper_funactions.dart';
 import 'package:flutter/material.dart';
@@ -162,11 +163,12 @@ class ExpressionEvaluator extends ChangeNotifier {
 
       input = normalizeDegrees(input);
       input = processImplicitMultiplication(input);
+     
 
       final resultPersantage = processImplicitMultiplication(
         evaluatePercentageExpression(input),
       );
-
+ debugPrint('processImplicitMultiplication is ----resultPersantage $resultPersantage');
       final evlauteExpression = _parser.parse(resultPersantage);
 
       //Todo: Evaluate expression:
@@ -174,15 +176,15 @@ class ExpressionEvaluator extends ChangeNotifier {
 
       num resultExpression = evaluator.evaluate(evlauteExpression);
 
-      resultsEvaluator = resultExpression.toString();
+      // resultsEvaluator = resultExpression.toString();
 
       resultsEvaluator = inverseAngleRegx.hasMatch(input)
-          ? '${_formatResult(num.parse(resultsEvaluator))}°'
-          : _formatResult(num.parse(resultsEvaluator));
+          ? '${_formatResult(num.parse(resultExpression.toString()).toDouble().toDegrees())}°'
+          : _formatResult(num.parse(resultExpression.toString()));
 
       _saveCalculationHistoryResults(
         historyInput,
-        num.parse(resultsEvaluator.toString()),
+       resultsEvaluator.toString(),
       );
 
       notifyListeners();
@@ -215,7 +217,7 @@ class ExpressionEvaluator extends ChangeNotifier {
     return result.toString();
   }
 
-  void _saveCalculationHistoryResults(String input, num resultExpression) {
+  void _saveCalculationHistoryResults(String input, String resultExpression) {
     final historyItem = HistoryItem(
       expression: input,
       result: resultExpression,

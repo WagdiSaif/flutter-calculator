@@ -40,19 +40,21 @@ class HeaderCalclutor extends StatelessWidget {
                 child: Column(
                   children: [
                     if (items.isNotEmpty)
-                      Column(   crossAxisAlignment: CrossAxisAlignment.end,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: List.generate(
                           items.length,
                           (index) => Align(
                             alignment: Alignment.bottomRight,
-                            child: Column(   crossAxisAlignment: CrossAxisAlignment.end,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
                                   '  ${items[index].expression} ',
                                   style: appTheme.textTheme.bodySmall,
                                 ),
                                 Text(
-                                  '= ${items[index].result}',
+                                  '= ${items[index].result.toString()}',
                                   style: appTheme.textTheme.bodySmall,
                                 ),
                               ],
@@ -65,13 +67,13 @@ class HeaderCalclutor extends StatelessWidget {
               );
             },
           ),
-        
+
           Container(
             padding: EdgeInsets.all(9),
-     
+
             alignment: Alignment.centerRight,
             width: (100.0).sw(context),
-          
+
             child: Selector<ExpressionEvaluator, (String, String)>(
               selector: (context, expr) =>
                   (expr.getExpression, expr.getResultsEvaluator),

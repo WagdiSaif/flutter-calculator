@@ -1,3 +1,4 @@
+import 'package:calculator/apptheme/theme.dart';
 import 'package:calculator/provider/hsitory_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -8,13 +9,18 @@ class History extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () async {
+        centerTitle: true,
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+
+        }, icon: Icon(Icons.arrow_back)),
+       actions :[ IconButton(onPressed: () async {
 
        await   HistoryProvider.deleteHistory();
        if(context.mounted) Navigator.pop(context);
       
    
-        }, icon: Icon(Icons.delete)),
+        }, icon: Icon(Icons.delete))],
         title: const Text('history'),
       ),
       body: SingleChildScrollView(
@@ -23,21 +29,24 @@ class History extends StatelessWidget {
         child: Container(
           alignment: Alignment.centerRight,
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              ...HistoryProvider.getHistoryItem.map(
-                (e) => Align(
-                  alignment: AlignmentGeometry.centerRight,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [Text('${e.expression}'), Text('${e.result}')],
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                ...HistoryProvider.getHistoryItem.map(
+                  (e) => Align(
+                    alignment: AlignmentGeometry.centerRight,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [Text(  style: appTheme.textTheme.bodySmall,e.expression), Text(  style: appTheme.textTheme.bodySmall,e.result)],
+                    ),
                   ),
                 ),
-              ),
-              Text(''),
-              Divider()
-            ],
+                Text(''),
+                Divider()
+              ],
+            ),
           ),
         ),
       ),

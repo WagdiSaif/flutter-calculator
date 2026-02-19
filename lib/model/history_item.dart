@@ -10,7 +10,7 @@ class HistoryItem  extends HiveObject{
 final String expression;
 
 @HiveField(1)
-final num result;
+final String result;
 
 
 @HiveField(2)
