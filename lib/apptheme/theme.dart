@@ -2,133 +2,159 @@ import 'package:calculator/provider/calculator_setting.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  AppTheme._(); //This private constractor
+  AppTheme._();
 
+  // Light Theme Colors
+  static const Color _lightBackground = Color(0xFFFFFFFF);
+  static const Color _lightSurface = Color(0xF2F2F2F2);
+  static const Color _lightDivider = Color(0xFFE2E5EA);
+
+  // Dark Theme Colors
+  static const Color _darkPrimary = Color(0xFF121212);
+  static const Color _darkBackground = Color(0xFF000000);
+  static const Color _darkSurface = Color(0xFF1E1E1E);
+  static const Color _darkSurfaceVariant = Color(0xFF2D2D2D);
+  static const Color _darkSurfaceBright = Color(0xFF383838);
+
+  static const Color _accentOrange = Color(0xFFFF8D0F);
+  static const Color _accentPurple = Color(0xFF4d4d6e);
+  static const Color _accentLightPurple = Color(0xFFDBDBF9);
+  static const Color _error = Color(0xFFff0000);
+
+  static const Color _textWhite = Color(0xFFFFFFFF);
+  static const Color _textBlack = Color(0xFF000000);
+  static const Color _textGrey = Colors.grey;
+
+  static const TextTheme _baseTextTheme = TextTheme(
+    displayLarge: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
+
+    displayMedium: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
+
+    displaySmall: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
+    // Button text
+    labelMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    // Small text (history)
+    bodySmall: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+  );
+
+  // ============== LIGHT THEME ==============
   static final ThemeData _lightTheme = ThemeData(
-    dividerTheme: DividerThemeData(thickness: 2, color: Color(0xFFE2E5EA)),
-    appBarTheme: AppBarTheme(
-      titleTextStyle: TextStyle(color: Colors.black, fontSize: 15),
-      iconTheme: IconThemeData(color: Colors.orange),
-      foregroundColor: Colors.grey[400],
-      elevation: 0.0,
-      backgroundColor: Color(0xFFFFFFFF),
-      surfaceTintColor: Color(0xFFFFFFFF),
-    ),
-    iconTheme: IconThemeData(color: Colors.orange),
-    scaffoldBackgroundColor: Color(0xFFffffff),
+    brightness: Brightness.light,
+
+    primaryColor: _accentOrange,
+    scaffoldBackgroundColor: _lightBackground,
+
+    appBarTheme: _lightAppBarTheme,
+
+    iconTheme: const IconThemeData(color: _accentOrange),
     iconButtonTheme: IconButtonThemeData(
-      style: ElevatedButton.styleFrom(foregroundColor: Colors.orange),
-    ),
-    textTheme: const TextTheme(
-      labelMedium: TextStyle(
-        color: Color(0xFFFFFFFF),
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
-      displayLarge: TextStyle(
-        color: Color(0xFF000000),
-        fontSize: 25,
-        fontWeight: FontWeight.normal,
-      ),
-      displayMedium: TextStyle(
-        fontSize: 23,
-        fontWeight: FontWeight.normal,
-        color: Color(0xFF000000),
-      ),
-      displaySmall: TextStyle(
-        fontSize: 23,
-        fontWeight: FontWeight.normal,
-        color: Color(0xFFFF8D0F),
-      ),
-      bodySmall: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.normal,
-        color: Colors.grey,
-      ),
+      style: IconButton.styleFrom(foregroundColor: _accentOrange),
     ),
 
-    colorScheme: ColorScheme(
-      primary: const Color(0xFFFF8D0F),
-      secondary: const Color(0xFF4d4d6e),
-      surface: const Color(0xF2F2F2F2),
+    // Dividers
+    dividerTheme: const DividerThemeData(thickness: 2, color: _lightDivider),
 
-      //  background: const Color(0xFFF8C6C6),
-      error: const Color(0xFFff0000),
-      onPrimary: const Color(0xFFDBDBF9),
-      onSecondary: const Color(0xFF262636),
-      onSurface: Colors.grey[600]!,
-      //
-      onBackground: Colors.blueGrey.shade200,
-      onError: const Color(0xFFFFFFFF),
-      brightness: Brightness.light,
-      primaryContainer: const Color(0xFFDBDBF9),
-      secondaryContainer: const Color(0xFF4d4d6e),
+    // Text
+    textTheme: _baseTextTheme.copyWith(
+      displayLarge: const TextStyle(
+        color: _textBlack,
+      ).merge(_baseTextTheme.displayLarge),
+      displayMedium: const TextStyle(
+        color: _textBlack,
+      ).merge(_baseTextTheme.displayMedium),
+      displaySmall: const TextStyle(
+        color: _accentOrange,
+      ).merge(_baseTextTheme.displaySmall),
+      labelMedium: const TextStyle(
+        color: _textWhite,
+      ).merge(_baseTextTheme.labelMedium),
+      bodySmall: const TextStyle(
+        color: _textGrey,
+      ).merge(_baseTextTheme.bodySmall),
+    ),
+
+    colorScheme: const ColorScheme.light(
+      primary: _accentOrange,
+      secondary: _accentPurple,
+      surface: _lightSurface,
+      error: _error,
+      onPrimary: _accentLightPurple,
+      onSecondary: _textWhite,
+      onSurface: _textGrey,
+      onError: _textWhite,
+      primaryContainer: _accentLightPurple,
+      secondaryContainer: _accentPurple,
     ),
   );
 
-  //dark Theme
-
+  // ============== DARK THEME ==============
   static final ThemeData _darkTheme = ThemeData(
-    iconTheme: IconThemeData(color: Colors.orange),
-    iconButtonTheme: IconButtonThemeData(
-      style: ElevatedButton.styleFrom(foregroundColor: Colors.orange),
-    ),
-    dividerTheme: DividerThemeData(thickness: 2, color: Colors.grey),
-    textTheme: TextTheme(
-      labelMedium: TextStyle(
-        color: Color(0xFFFFFFFF),
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
-      displayLarge: TextStyle(
-        color: Color(0xFFFFFFFF),
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-      displayMedium: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.normal,
-        color: Color(0xFFFFFFFF),
-      ),
-      displaySmall: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.normal,
-        color: Color(0xFFFF8D0F),
-      ),
-      bodySmall: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.normal,
-        color: Colors.grey,
-      ),
-    ),
-
-    scaffoldBackgroundColor: Color(0xFF121212),
-
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF121212),
 
-    appBarTheme: AppBarTheme(
-      elevation: 0.0,
-      titleTextStyle: TextStyle(color: Colors.white, fontSize: 15),
-      iconTheme: IconThemeData(color: Colors.orange),
-      backgroundColor: Color(0xFF000000), // Pure black
-      foregroundColor: Colors.white,
-      surfaceTintColor: Colors.transparent,
-      centerTitle: true,
+    primaryColor: _darkPrimary,
+    scaffoldBackgroundColor: _darkBackground,
+
+    appBarTheme: _darkAppBarTheme,
+
+    // Icons
+    iconTheme: const IconThemeData(color: _accentOrange),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(foregroundColor: _accentOrange),
     ),
 
-    colorScheme: ColorScheme.dark(
-      onPrimary: Color(0xFFFF8D0F),
+    // Dividers
+    dividerTheme: const DividerThemeData(thickness: 2, color: Colors.grey),
 
-      primary: const Color(0xFFFF8D0F),
-      background: Color(0xFF000000),
-      surface: Color(0xFF1E1E1E),
-      brightness: Brightness.dark,
-      surfaceVariant: Color(0xFF2D2D2D),
-      surfaceBright: Color(0xFF383838),
+    // Text
+    textTheme: _baseTextTheme.copyWith(
+      displayLarge: const TextStyle(
+        color: _textWhite,
+        fontWeight: FontWeight.bold,
+      ).merge(_baseTextTheme.displayLarge),
+      displayMedium: const TextStyle(
+        color: _textWhite,
+      ).merge(_baseTextTheme.displayMedium),
+      displaySmall: const TextStyle(
+        color: _accentOrange,
+      ).merge(_baseTextTheme.displaySmall),
+      labelMedium: const TextStyle(
+        color: _textWhite,
+      ).merge(_baseTextTheme.labelMedium),
+      bodySmall: const TextStyle(
+        color: _textGrey,
+      ).merge(_baseTextTheme.bodySmall),
+    ),
+
+    // Color Scheme
+    colorScheme: const ColorScheme.dark(
+      primary: _accentOrange,
+      background: _darkBackground,
+      surface: _darkSurface,
+      onPrimary: _accentOrange,
+      surfaceVariant: _darkSurfaceVariant,
+      surfaceBright: _darkSurfaceBright,
     ),
   );
-  // Use this tool in debug mode
+
+  static const AppBarTheme _lightAppBarTheme = AppBarTheme(
+    elevation: 0.0,
+    backgroundColor: _lightBackground,
+    foregroundColor: Colors.grey,
+    surfaceTintColor: _lightBackground,
+    centerTitle: true,
+    titleTextStyle: TextStyle(color: _textBlack, fontSize: 15),
+    iconTheme: IconThemeData(color: _accentOrange, size: 24),
+  );
+
+  static const AppBarTheme _darkAppBarTheme = AppBarTheme(
+    elevation: 0.0,
+    backgroundColor: _darkBackground,
+    foregroundColor: _textWhite,
+    surfaceTintColor: Colors.transparent,
+    centerTitle: true,
+    titleTextStyle: TextStyle(color: _textWhite, fontSize: 15),
+    iconTheme: IconThemeData(color: _accentOrange, size: 24),
+  );
 }
 
 ThemeData get appTheme => CalculatorSetting.instance.isLightModeThemeState

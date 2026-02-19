@@ -163,12 +163,11 @@ class ExpressionEvaluator extends ChangeNotifier {
 
       input = normalizeDegrees(input);
       input = processImplicitMultiplication(input);
-     
 
       final resultPersantage = processImplicitMultiplication(
         evaluatePercentageExpression(input),
       );
- debugPrint('processImplicitMultiplication is ----resultPersantage $resultPersantage');
+
       final evlauteExpression = _parser.parse(resultPersantage);
 
       //Todo: Evaluate expression:
@@ -182,10 +181,7 @@ class ExpressionEvaluator extends ChangeNotifier {
           ? '${_formatResult(num.parse(resultExpression.toString()).toDouble().toDegrees())}°'
           : _formatResult(num.parse(resultExpression.toString()));
 
-      _saveCalculationHistoryResults(
-        historyInput,
-       resultsEvaluator.toString(),
-      );
+      _saveCalculationHistoryResults(historyInput, resultsEvaluator.toString());
 
       notifyListeners();
     } on FormatException {
@@ -219,7 +215,7 @@ class ExpressionEvaluator extends ChangeNotifier {
 
   void _saveCalculationHistoryResults(String input, String resultExpression) {
     final historyItem = HistoryItem(
-      expression: input,
+      expression: input.replaceAll('/', '÷').replaceAll(RegExp(r'^\*'), "x"),
       result: resultExpression,
       dateTime: DateTime.now(),
     );
