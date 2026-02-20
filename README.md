@@ -1,10 +1,10 @@
-# 🧮 Flutter Scientific Calculator
+# Flutter Scientific Calculator
 
 A feature-rich scientific calculator app built with Flutter, featuring advanced mathematical expression parsing and a clean, intuitive interface.
 
-## ✨ Features
+## Features
 
-### 📊 Core Functions
+### Core Functions
 - Basic arithmetic: `+`, `-`, `×`, `÷`
 - Power operations: `x^y`, `x⁻¹`
 - Square root & nested roots: `√x`
@@ -12,13 +12,13 @@ A feature-rich scientific calculator app built with Flutter, featuring advanced 
 - Percentages: smart context-aware handling
 - Parentheses: automatic balancing
 
-### 🔬 Scientific Functions
+### Scientific Functions
 - **Trigonometric**: `sin`, `cos`, `tan` (supports both **DEGREE** and **RADIAN** modes)
 - **Inverse trig**: `sin⁻¹`, `cos⁻¹`, `tan⁻¹` (with degree/radian toggle)
 - **Logarithms**: `log`, `ln`
 - **Constants**: `π`, `e`
 
-### 🧠 Smart Parsing
+### Smart Parsing
 - Converts display symbols to evaluable expressions
 - Handles implicit multiplication: `2π`, `2ln(2)`
 - Auto-closes parentheses: `sin(30` → `sin(30)`
@@ -26,14 +26,22 @@ A feature-rich scientific calculator app built with Flutter, featuring advanced 
 - Factorial-exponent precedence: `9!^2` → `(9!)^2`
 - Percentage inside expressions: `5!%2`, `(2+3)^(2%)`
 
-### 🎨 User Interface
+### User Interface
 - Clean, modern layout
 - Light/Dark theme toggle
 - Scrollable calculation history
 - Smart expression formatting
 - **Degree/Radian mode indicator and toggle**
 
-## 📱 Screenshots
+## Built With
+
+- [Flutter](https://flutter.dev/) - UI framework
+- [math_expressions v3.1.0](https://pub.dev/packages/math_expressions) - Mathematical expression parsing and evaluation
+- [Provider v6.1.5+1](https://pub.dev/packages/provider) - State management
+- [Hive v2.2.3](https://pub.dev/packages/hive) - Fast, lightweight local database
+- [Hive Flutter v1.1.0](https://pub.dev/packages/hive_flutter) - Flutter integration for Hive
+
+## Screenshots
 
 <div align="center">
   <table>
@@ -62,7 +70,7 @@ A feature-rich scientific calculator app built with Flutter, featuring advanced 
   </table>
 </div>
 
-## 🧠 Key Implementation Highlights
+## Key Implementation Highlights
 
 - **Dual Angle Mode**: Full support for both DEGREE and RADIAN modes with easy toggle
 - Uses **GrammarParser** for parsing expressions
@@ -71,7 +79,7 @@ A feature-rich scientific calculator app built with Flutter, featuring advanced 
 - Auto parentheses and implicit multiplication detection
 - Supports nested functions and mixed operations
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 - Flutter SDK `3.35.5` or higher
@@ -91,7 +99,16 @@ flutter pub get
 
 # Run the app
 flutter run
+```
 
-## 📝 License
+## Contact
+
+For questions or suggestions, reach out at:
+
+- Email: wagdisaif121@gmail.com
+- GitHub: [@WagdiSaif](https://github.com/WagdiSaif)
+
+## License
 
 This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+```
