@@ -1,52 +1,87 @@
-# calculator
+# 🧮 Flutter Scientific Calculator
 
-A new Flutter project.
-
-## Getting Started
-
-Flutter Scientific Calculator
 A feature-rich scientific calculator app built with Flutter, featuring advanced mathematical expression parsing and a clean, intuitive interface.
 
-# Features
-## Core Functions
-Basic arithmetic: +, -, ×, ÷
-Power operations: x^y, x^-1
-Square root & nested roots: √x
-Factorials: n!
-Percentages: smart context-aware handling
-Parentheses: automatic balancing
-## Scientific Functions
-Trigonometric: sin, cos, tan (degree mode)
-Inverse trig: sin⁻¹, cos⁻¹, tan⁻¹
-Logarithms: log, ln
-Constants: π, e
+## ✨ Features
 
-## Smart Parsing
-Converts display symbols to evaluable expressions
-Handles implicit multiplication: 2π, 2.ln(2)
-Auto-closes parentheses: sin(30 → sin(30)
-Nested function support: sin(cos(30))
-Factorial-exponent precedence: 9!^2 → (9!)^2
-Percentage inside expressions: 5!%2, (2+3)^(2%)
-## User Interface
-Clean, modern layout
-Light/Dark theme toggle
-Scrollable calculation history
-expression formatting
-# Screenshots
+### 📊 Core Functions
+- Basic arithmetic: `+`, `-`, `×`, `÷`
+- Power operations: `x^y`, `x⁻¹`
+- Square root & nested roots: `√x`
+- Factorials: `n!`
+- Percentages: smart context-aware handling
+- Parentheses: automatic balancing
+
+### 🔬 Scientific Functions
+- **Trigonometric**: `sin`, `cos`, `tan` (supports both **DEGREE** and **RADIAN** modes)
+- **Inverse trig**: `sin⁻¹`, `cos⁻¹`, `tan⁻¹` (with degree/radian toggle)
+- **Logarithms**: `log`, `ln`
+- **Constants**: `π`, `e`
+
+### 🧠 Smart Parsing
+- Converts display symbols to evaluable expressions
+- Handles implicit multiplication: `2π`, `2ln(2)`
+- Auto-closes parentheses: `sin(30` → `sin(30)`
+- Nested function support: `sin(cos(30))`
+- Factorial-exponent precedence: `9!^2` → `(9!)^2`
+- Percentage inside expressions: `5!%2`, `(2+3)^(2%)`
+
+### 🎨 User Interface
+- Clean, modern layout
+- Light/Dark theme toggle
+- Scrollable calculation history
+- Smart expression formatting
+- **Degree/Radian mode indicator and toggle**
+
+## 📱 Screenshots
+
 <div align="center">
-  <img src="screenshots/simple_mode_dark.png" width="200" alt="Light Mode"/>
-  <img src="screenshots/scientific_mode_dark.png" width="200" alt="Dark Mode"/>
-   <img src="screenshots/simple_mode_light.png" width="200" alt="Dark Mode"/>
-     <img src="screenshots/scientific_mode_light.png" width="200" alt="Dark Mode"/>
-       <img src="screenshots/history.png" width="200" alt="Dark Mode"/>
-
-
+  <table>
+    <tr>
+      <td align="center"><b>Simple Mode (Dark)</b></td>
+      <td align="center"><b>Scientific Mode (Dark)</b></td>
+    </tr>
+    <tr>
+      <td><img src="screenshots/simple_mode_dark.png" width="250" alt="Simple Mode Dark"/></td>
+      <td><img src="screenshots/scientific_mode_dark.png" width="250" alt="Scientific Mode Dark"/></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Simple Mode (Light)</b></td>
+      <td align="center"><b>Scientific Mode (Light)</b></td>
+    </tr>
+    <tr>
+      <td><img src="screenshots/simple_mode_light.png" width="250" alt="Simple Mode Light"/></td>
+      <td><img src="screenshots/scientific_mode_light.png" width="250" alt="Scientific Mode Light"/></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2"><b>History View</b></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><img src="screenshots/history.png" width="250" alt="History"/></td>
+    </tr>
+  </table>
 </div>
 
-## Installation
+## 🧠 Key Implementation Highlights
+
+- **Dual Angle Mode**: Full support for both DEGREE and RADIAN modes with easy toggle
+- Uses **GrammarParser** for parsing expressions
+- Custom handling for precision, roots, and angles
+- Smart percentage & factorial-exponent evaluation
+- Auto parentheses and implicit multiplication detection
+- Supports nested functions and mixed operations
+
+## 🚀 Installation
+
+### Prerequisites
+- Flutter SDK `3.35.5` or higher
+- Dart SDK `3.9.2` or higher
+
+### Steps
+
+```bash
 # Clone the repository
-https://github.com/WagdiSaif/flutter-calculator.git
+git clone https://github.com/WagdiSaif/flutter-calculator.git
 
 # Navigate to project folder
 cd flutter-calculator
@@ -57,12 +92,6 @@ flutter pub get
 # Run the app
 flutter run
 
-# Key Implementation Highlights
-Uses GrammerParser for parsing expressions
-Custom handling for precision, roots, and angles
-Smart percentage & factorial-exponent evaluation
-Auto parentheses and implicit multiplication detection
-Supports nested functions and mixed operations
+## 📝 License
 
-# License
-This project is licensed under the MIT License – see the LICENSE file for details.
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
