@@ -175,8 +175,6 @@ class ExpressionEvaluator extends ChangeNotifier {
 
       num resultExpression = evaluator.evaluate(evlauteExpression);
 
-      // resultsEvaluator = resultExpression.toString();
-
       resultsEvaluator = inverseAngleRegx.hasMatch(input)
           ? '${_formatResult(num.parse(resultExpression.toString()).toDouble().toDegrees())}°'
           : _formatResult(num.parse(resultExpression.toString()));
