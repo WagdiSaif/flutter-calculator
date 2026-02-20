@@ -14,7 +14,7 @@ A feature-rich scientific calculator app built with Flutter, featuring advanced 
 
 ### Scientific Functions
 - **Trigonometric**: `sin`, `cos`, `tan` (supports both **DEGREE** and **RADIAN** modes)
-- **Inverse trig**: `sin⁻¹`, `cos⁻¹`, `tan⁻¹` (with degree/radian toggle)
+- **Inverse trig**: `sin⁻¹`, `cos⁻¹`, `tan⁻¹`
 - **Logarithms**: `log`, `ln`
 - **Constants**: `π`, `e`
 
