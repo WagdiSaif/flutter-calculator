@@ -6,13 +6,14 @@ A new Flutter project.
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Flutter Scientific Calculator
+A feature-rich scientific calculator app built with Flutter, featuring advanced mathematical expression parsing and a clean, intuitive interface.
+# Screenshots
+<div align="center">
+  <img src="screenshots/Simple_Calculator_dark.png" width="200" alt="Light Mode"/>
+  <img src="screenshots/scientific_mode_dark.png" width="200" alt="Dark Mode"/>
+  <img src="screenshots/scientific_mode.png" width="200" alt="Scientific Mode"/>
+  <img src="screenshots/history.png" width="200" alt="History"/>
+</div>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# flutter-calculator
-
+#Features

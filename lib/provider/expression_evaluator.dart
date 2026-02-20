@@ -215,7 +215,7 @@ class ExpressionEvaluator extends ChangeNotifier {
 
   void _saveCalculationHistoryResults(String input, String resultExpression) {
     final historyItem = HistoryItem(
-      expression: input.replaceAll('/', '÷').replaceAll(RegExp(r'^\*'), "x"),
+      expression: input.replaceAll('/', '÷').replaceAll('*', "x"),
       result: resultExpression,
       dateTime: DateTime.now(),
     );
