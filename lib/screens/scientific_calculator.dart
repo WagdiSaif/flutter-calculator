@@ -37,7 +37,7 @@ class ScientificCalculator extends StatelessWidget {
                 color: !calculatorSetting.checkIsDegree
                     ? Colors.grey[500]
                     : calculatorSetting.isLightModeThemeState? Colors.black:Colors.white,
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
               degreeRadianMode: () {
                 
@@ -51,7 +51,7 @@ class ScientificCalculator extends StatelessWidget {
             DegreeRadianSwitch(
               isSecondMode: calculatorSetting.getSecondMode,
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
                 color: calculatorSetting.getSecondMode
                     ? Colors.grey[500]
                     :calculatorSetting.isLightModeThemeState? Colors.black:Colors.white,
@@ -68,7 +68,7 @@ class ScientificCalculator extends StatelessWidget {
               // color: Colors.grey.shade100,
               btntext: calculatorSetting.getSecondMode ? 'sin⁻¹' : 'sin',
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
             ),
 
@@ -76,14 +76,14 @@ class ScientificCalculator extends StatelessWidget {
               // color: Colors.grey.shade100,
               btntext: calculatorSetting.getSecondMode ? 'cos⁻¹' : 'cos',
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
             ),
             OperationButton(
               // color: Colors.grey.shade100,
               btntext: calculatorSetting.getSecondMode ? 'tan⁻¹' : 'tan',
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
             ),
 
@@ -95,14 +95,14 @@ class ScientificCalculator extends StatelessWidget {
           children: [
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
               // color: Colors.grey.shade100,
               btntext: 'xʸ',
             ),
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
               // color: Colors.grey.shade100,
               btntext: 'lg',
@@ -111,19 +111,19 @@ class ScientificCalculator extends StatelessWidget {
               // color: Colors.grey.shade100,
               btntext: 'ln',
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
             ),
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
               // color: Colors.grey.shade100,
               btntext: '(',
             ),
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
               // color: Colors.grey.shade100,
               btntext: ')',
@@ -138,7 +138,7 @@ class ScientificCalculator extends StatelessWidget {
               // color: Colors.grey.shade100,
               btntext: '√x',
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
             ),
             Selector<ExpressionEvaluator, String>(
@@ -171,7 +171,7 @@ class ScientificCalculator extends StatelessWidget {
           children: [
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
               // color: Colors.grey.shade100,
               btntext: 'x!',
@@ -198,7 +198,7 @@ class ScientificCalculator extends StatelessWidget {
           children: [
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
 
               // color: Colors.grey.shade100,
@@ -228,7 +228,7 @@ class ScientificCalculator extends StatelessWidget {
           children: [
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 5.0.sw(context),
+                fontSize: 5.sw(context),
               ),
               // color: Colors.grey.shade100,
               btntext: 'π',
@@ -265,7 +265,7 @@ class ScientificCalculator extends StatelessWidget {
             ),
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 7.0.sw(context),
+                fontSize: 7.sw(context),
               ),
               // color: Colors.grey.shade100,
               btntext: 'e',
@@ -279,7 +279,7 @@ class ScientificCalculator extends StatelessWidget {
               isCustomChar: true,
 
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
-                fontSize: 10.0.sw(context),
+                fontSize: 10.sw(context),
               ),
             ),
             Selector<ExpressionEvaluator, String>(

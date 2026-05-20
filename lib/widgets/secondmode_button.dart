@@ -26,8 +26,8 @@ class SecondModeButton extends StatelessWidget {
       padding: EdgeInsets.only(left: 0, right: 0, top: 5, bottom: 5),
       child: Container(
         alignment: Alignment.center,
-        width: isScientificMode ? 20.0.sw(context) : 25.0.sw(context),
-        height: isScientificMode ? 8.0.sh(context) : 10.2.sh(context),
+        width: isScientificMode ? 20.sw(context) : 25.sw(context),
+        height: isScientificMode ? 8.sh(context) : 10.2.sh(context),
 
         child: TextButton(
           style: ButtonStyle(
@@ -38,7 +38,7 @@ class SecondModeButton extends StatelessWidget {
           onPressed: !isDegree ? null : degreeRadianMode,
           child: Text(
             btntext,
-            style: textStyle.copyWith(fontSize: 5.0.sw(context)),
+            style: textStyle.copyWith(fontSize: 5.sw(context)),
             textAlign: TextAlign.center,
           ),
         ),

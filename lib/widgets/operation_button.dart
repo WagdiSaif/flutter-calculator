@@ -35,8 +35,8 @@ final TextStyle? textStyle;
           padding: EdgeInsets.only(left: 0, right: 0, top: 1, bottom: 1),
           child: Container(
             alignment: Alignment.center,
-            width:isScientificMode?20.0.sw(context): 25.0.sw(context),
-            height:isScientificMode? 8.0.sh(context): 10.0.sh(context),
+            width:isScientificMode?20.sw(context): 25.sw(context),
+            height:isScientificMode? 8.sh(context): 10.sh(context),
             //decoration: BoxDecoration(  color: Colors.amber ),
           
             child: TextButton(
@@ -48,7 +48,7 @@ final TextStyle? textStyle;
               child:
               Text(
                 btntext,
-                style:textStyle??  appTheme.textTheme.displaySmall!.copyWith(fontSize: 7.0.sw(context)),
+                style:textStyle??  appTheme.textTheme.displaySmall!.copyWith(fontSize: 7.sw(context)),
                 textAlign: TextAlign.center,
               ),
             ),

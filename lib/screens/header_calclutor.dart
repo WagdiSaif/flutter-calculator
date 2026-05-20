@@ -21,14 +21,14 @@ class HeaderCalclutor extends StatelessWidget {
       key: globalKey,
       decoration: BoxDecoration(),
       constraints: BoxConstraints(
-        minHeight: 100.0.sh(context),
+        minHeight: 100.sh(context),
         maxHeight: double.infinity,
-        minWidth: 100.0.sw(context),
+        minWidth: 100.sw(context),
       ),
       padding: EdgeInsets.all(5),
 
       alignment: Alignment.bottomRight,
-      width: (100.0).sw(context),
+      width: (100).sw(context),
       child: Column(
         children: [
           ValueListenableBuilder<Box<HistoryItem>>(
@@ -72,7 +72,7 @@ class HeaderCalclutor extends StatelessWidget {
             padding: EdgeInsets.all(9),
 
             alignment: Alignment.centerRight,
-            width: (100.0).sw(context),
+            width: (100).sw(context),
 
             child: Selector<ExpressionEvaluator, (String, String)>(
               selector: (context, expr) =>

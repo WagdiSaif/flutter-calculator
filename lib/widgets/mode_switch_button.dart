@@ -19,15 +19,15 @@ class ModeSwitchButton extends StatelessWidget {
           padding: EdgeInsets.only(left: 0, right: 0, top: 2, bottom: 2),
           child: Container(
             alignment: Alignment.center,
-            width: isScientificMode ? 20.0.sw(context) : 25.0.sw(context),
-            height: isScientificMode ? 8.0.sh(context) : 9.2.sh(context),
+            width: isScientificMode ? 20.sw(context) : 25.sw(context),
+            height: isScientificMode ? 8.sh(context) : 9.2.sh(context),
 
             //decoration: BoxDecoration(  color: Colors.amber ),
             child: IconButton(
               onPressed: changeCalculatorMode,
               icon: Image(
-                width: 8.0.sw(context),
-                height: 10.0.sh(context),
+                width: 8.sw(context),
+                height: 10.sh(context),
                 image: AssetImage(Constants.rotateBtnIcon),
               ),
             ),

@@ -225,7 +225,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                             .textTheme
                                             .displaySmall!
                                             .copyWith(
-                                              fontSize: 11.0.sw(context),
+                                              fontSize: 11.sw(context),
                                             ),
                                         // color: Colors.grey.shade100,
                                         btntext: '−',
@@ -281,7 +281,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                             .textTheme
                                             .displayMedium!
                                             .copyWith(
-                                              fontSize: 10.0.sw(context),
+                                              fontSize: 10.sw(context),
                                             ),
                                       ),
                                       Selector<ExpressionEvaluator, String>(

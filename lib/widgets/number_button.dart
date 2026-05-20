@@ -30,8 +30,8 @@ this.isCustomChar=false,
           padding: EdgeInsets.only(left: 0, right: 0, top: 1, bottom: 1),
           child: Container(
             alignment: Alignment.center,
-            width: isScientificMode ? 20.0.sw(context) : 25.0.sw(context),
-            height: isScientificMode ? 8.0.sh(context) : 10.0.sh(context),
+            width: isScientificMode ? 20.sw(context) : 25.sw(context),
+            height: isScientificMode ? 8.sh(context) : 10.sh(context),
 
             //decoration: BoxDecoration(  color: Colors.amber ),
             child: TextButton(
@@ -51,7 +51,7 @@ this.isCustomChar=false,
               },
               child: Text(
                 btntext,
-                style:isCustomChar?textStyle: textStyle.copyWith(fontSize: 8.0.sw(context)),
+                style:isCustomChar?textStyle: textStyle.copyWith(fontSize: 8.sw(context)),
                 textAlign: TextAlign.center,
               ),
             ),
