@@ -1,5 +1,6 @@
 import 'package:calculator/screens/home.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import 'provider/calculator_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       builder: (context, child) {
         return Selector<CalculatorSetting, bool>(
-          // Selector  only rebuilds on theme change
+   
           selector: (context, cal) => cal.isLightModeThemeState,
           builder: (context, _, _) {
             return MaterialApp(
