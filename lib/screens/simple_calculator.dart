@@ -89,12 +89,12 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
 
     final keyBordGlobalPostion = keyBordRenderBox!.localToGlobal(Offset.zero);
 
-    final isPointerOnCalculatorHeaserWidget =
+    final isPointerOnCalculatorHeaderWidget =
         globalPostion.dy <=
             ((keyBordGlobalPostion.dy) + (keyBordRenderBox!.size.height)) &&
         globalPostion.dy <= keyBordGlobalPostion.dy;
 
-    if (isPointerOnCalculatorHeaserWidget) {
+    if (isPointerOnCalculatorHeaderWidget) {
       _calculatorSetting.changeScrollScreenState(true);
     } else {
       _calculatorSetting.changeScrollScreenState(false);
