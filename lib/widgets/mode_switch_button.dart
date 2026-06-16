@@ -1,6 +1,6 @@
 import 'package:calculator/provider/calculator_setting.dart';
-import 'package:calculator/utils/constants.dart';
-import 'package:calculator/utils/extention.dart';
+import 'package:calculator/core/constants.dart';
+import 'package:calculator/core/extention.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

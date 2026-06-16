@@ -5,7 +5,7 @@ import 'package:calculator/provider/expression_evaluator.dart';
 
 import 'package:calculator/screens/header_calclutor.dart';
 import 'package:calculator/screens/scientific_calculator.dart';
-import 'package:calculator/utils/extention.dart';
+import 'package:calculator/core/extention.dart';
 
 import 'package:calculator/widgets/equals_button.dart';
 import 'package:calculator/widgets/mode_switch_button.dart';
@@ -13,7 +13,6 @@ import 'package:calculator/widgets/number_button.dart';
 import 'package:calculator/widgets/operation_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//todo:Enter :
 
 class SimpleCalculator extends StatefulWidget {
   const SimpleCalculator({super.key});
@@ -39,10 +38,13 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
 
     if (headerGlobalPosition != null) {
       final heightScrollingKeypad = calSetting.isScientificMode
-          ? ((_scrollingKeypadHeight!) * 0.95)
+          ? ((_scrollingKeypadHeight!) *
+                0.95) //// Reduce 5% from original height. This gives user free scrolling before auto-hide keypad on scroll.
           : (_scrollingKeypadHeight!) * (1.10);
       if (headerGlobalPosition! >= heightScrollingKeypad) {
-        if (_scrollController.position.extentBefore < heightScrollingKeypad) {
+        //// If user makes scrolling and header
+        if (_scrollController.position.extentBefore < _scrollingKeypadHeight!) {
+          //// Prevents snapping back to top when header is partially scrolled
           await _scrollController.position.ensureVisible(
             _headerRenderBox!,
             duration: Duration(milliseconds: 300),
@@ -91,18 +93,17 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
   Future<void> _checkHeaderScrollingPosition(Offset globalPostion) async {
     if (_keypadRenderBox == null) return;
 
-    final keypadGlobalPostion = _keypadRenderBox!.localToGlobal(Offset.zero);
+    final keypadGlobalPostion = _keypadRenderBox!.localToGlobal(
+      Offset.zero,
+    ); //// Get the keypad's position on screen
 
     final isPointerOnCalculatorHeaderWidget =
-        globalPostion.dy <=
-            ((keypadGlobalPostion.dy) + (_keypadRenderBox!.size.height)) &&
         globalPostion.dy <= keypadGlobalPostion.dy;
+    // Toggle scroll behavior based on where the user is touching
 
-    if (isPointerOnCalculatorHeaderWidget) {
-      _calculatorSetting.changeScrollScreenState(true);
-    } else {
-      _calculatorSetting.changeScrollScreenState(false);
-    }
+    _calculatorSetting.changeScrollScreenState(
+      isPointerOnCalculatorHeaderWidget,
+    );
 
     return;
   }
@@ -128,9 +129,6 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                   _checkHeaderScrollingPosition(event.position);
                 },
 
-                onPointerCancel: (event) {
-                  _calculatorSetting.changeScrollScreenState(true);
-                },
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   physics: calSetting.isScreenScrollingState
@@ -140,7 +138,6 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 0.0, top: 0.0),
                     child: Column(
-                      //  mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         HeaderCalclutor(globalKey: _headerKey),
@@ -174,15 +171,15 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                         onPressedfun: () => context
                                             .read<ExpressionEvaluator>()
                                             .removeLastCharacter(),
-                                        // color: Colors.grey.shade100,
+                                    
                                         btntext: '⌫',
                                       ),
                                       OperationButton(
-                                        // color: Colors.grey.shade100,
+                                   
                                         btntext: '%',
                                       ),
                                       OperationButton(
-                                        // color: Colors.grey.shade100,
+                                     
                                         btntext: '÷',
                                       ),
                                     ],
@@ -256,10 +253,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                         textStyle:
                                             appTheme.textTheme.displayMedium!,
                                       ),
-                                      OperationButton(
-                                        // color: Colors.grey.shade100,
-                                        btntext: '+',
-                                      ),
+                                      OperationButton(btntext: '+'),
                                     ],
                                   ),
                                   Row(
@@ -310,7 +304,6 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                   ),
                                 ],
                               ),
-                        //the second
                       ],
                     ),
                   ),

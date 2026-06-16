@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:calculator/utils/extention.dart';
+import 'package:calculator/core/extention.dart';
 
 class HeaderCalclutor extends StatelessWidget {
   HeaderCalclutor({required this.globalKey, super.key});

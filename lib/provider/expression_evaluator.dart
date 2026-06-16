@@ -1,6 +1,6 @@
 import 'package:calculator/model/history_item.dart';
 import 'package:calculator/provider/hsitory_provider.dart';
-import 'package:calculator/utils/extention.dart';
+import 'package:calculator/core/extention.dart';
 
 import 'package:calculator/utils/helper_funactions.dart';
 import 'package:flutter/material.dart';

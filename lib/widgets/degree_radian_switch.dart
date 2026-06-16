@@ -1,6 +1,6 @@
 import 'package:calculator/apptheme/theme.dart';
 
-import 'package:calculator/utils/extention.dart';
+import 'package:calculator/core/extention.dart';
 import 'package:flutter/material.dart';
 
 class DegreeRadianSwitch extends StatelessWidget {

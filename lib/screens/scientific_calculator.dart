@@ -1,7 +1,7 @@
 import 'package:calculator/apptheme/theme.dart';
 import 'package:calculator/provider/calculator_setting.dart';
 import 'package:calculator/provider/expression_evaluator.dart';
-import 'package:calculator/utils/extention.dart';
+import 'package:calculator/core/extention.dart';
 import 'package:calculator/widgets/degree_radian_switch.dart';
 import 'package:calculator/widgets/equals_button.dart';
 import 'package:calculator/widgets/mode_switch_button.dart';
@@ -125,7 +125,7 @@ class ScientificCalculator extends StatelessWidget {
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
                 fontSize: 5.sw(context),
               ),
-              // color: Colors.grey.shade100,
+
               btntext: ')',
             ),
 
@@ -167,7 +167,7 @@ class ScientificCalculator extends StatelessWidget {
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
                 fontSize: 5.sw(context),
               ),
-              // color: Colors.grey.shade100,
+        
               btntext: 'x!',
             ),
             NumberButton(

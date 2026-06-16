@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/expression_evaluator.dart';
-import 'package:calculator/utils/extention.dart';
+import 'package:calculator/core/extention.dart';
 
 class NumberButton extends StatelessWidget {
   const NumberButton({
