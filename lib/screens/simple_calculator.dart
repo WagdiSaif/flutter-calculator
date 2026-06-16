@@ -24,32 +24,34 @@ class SimpleCalculator extends StatefulWidget {
 
 class _SimpleCalculatorState extends State<SimpleCalculator> {
   final _scrollController = ScrollController();
-  final GlobalKey _firstListener = GlobalKey();
-  final GlobalKey _secondListener = GlobalKey();
+  final GlobalKey _headerKey = GlobalKey();
+  final GlobalKey _keypadKey = GlobalKey();
   final GlobalKey globalKeyScrolling = GlobalKey();
-  RenderBox? headerRenderBox;
-  RenderBox? keyBordRenderBox;
+  RenderBox? _headerRenderBox;
+  RenderBox? _keypadRenderBox;
   late final CalculatorSetting _calculatorSetting;
   Future<void> _enureVisibleRelatedWidget(
     PointerUpEvent event,
     CalculatorSetting calSetting,
+    Offset globalPostion,
   ) async {
     _calculatorSetting.changeScrollScreenState(true);
-    //scrollingKeybordHeight
 
     if (headerGlobalPosition != null) {
-      final heightScrollingKeyBoard = calSetting.isScientificMode
-          ? ((scrollingKeybordHeight!) - scrollingKeybordHeight! * .05)
-          : ((scrollingKeybordHeight!) + scrollingKeybordHeight! * .10);
-      if (headerGlobalPosition! >= heightScrollingKeyBoard) {
-        await _scrollController.position.ensureVisible(
-          headerRenderBox!,
-          duration: Duration(milliseconds: 300),
-          curve: Curves.bounceInOut,
-        );
+      final heightScrollingKeypad = calSetting.isScientificMode
+          ? ((_scrollingKeypadHeight!) * 0.95)
+          : (_scrollingKeypadHeight!) * (1.10);
+      if (headerGlobalPosition! >= heightScrollingKeypad) {
+        if (_scrollController.position.extentBefore < heightScrollingKeypad) {
+          await _scrollController.position.ensureVisible(
+            _headerRenderBox!,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.bounceInOut,
+          );
+        }
       } else {
         await _scrollController.position.ensureVisible(
-          keyBordRenderBox!,
+          _keypadRenderBox!,
           duration: Duration(milliseconds: 300),
           curve: Curves.bounceInOut,
         );
@@ -57,22 +59,22 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
     }
   }
 
-  double? scrollingKeybordHeight;
+  double? _scrollingKeypadHeight;
   @override
   void initState() {
     super.initState();
     _calculatorSetting = Provider.of<CalculatorSetting>(context, listen: false);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      headerRenderBox =
-          _firstListener.currentContext?.findRenderObject() as RenderBox;
-      keyBordRenderBox =
-          _secondListener.currentContext?.findRenderObject() as RenderBox;
+      _headerRenderBox =
+          _headerKey.currentContext?.findRenderObject() as RenderBox;
+      _keypadRenderBox =
+          _keypadKey.currentContext?.findRenderObject() as RenderBox;
 
       _scrollController.addListener(() {
-        headerGlobalPosition = (keyBordRenderBox!.localToGlobal(Offset.zero).dy)
+        headerGlobalPosition = (_keypadRenderBox!.localToGlobal(Offset.zero).dy)
             .abs();
-        scrollingKeybordHeight = keyBordRenderBox!.size.height;
+        _scrollingKeypadHeight = _keypadRenderBox!.size.height;
       });
     });
   }
@@ -81,18 +83,20 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
   void dispose() {
     _scrollController.dispose();
 
+    _calculatorSetting.dispose();
+
     super.dispose();
   }
 
   Future<void> _checkHeaderScrollingPosition(Offset globalPostion) async {
-    if (keyBordRenderBox == null) return;
+    if (_keypadRenderBox == null) return;
 
-    final keyBordGlobalPostion = keyBordRenderBox!.localToGlobal(Offset.zero);
+    final keypadGlobalPostion = _keypadRenderBox!.localToGlobal(Offset.zero);
 
     final isPointerOnCalculatorHeaderWidget =
         globalPostion.dy <=
-            ((keyBordGlobalPostion.dy) + (keyBordRenderBox!.size.height)) &&
-        globalPostion.dy <= keyBordGlobalPostion.dy;
+            ((keypadGlobalPostion.dy) + (_keypadRenderBox!.size.height)) &&
+        globalPostion.dy <= keypadGlobalPostion.dy;
 
     if (isPointerOnCalculatorHeaderWidget) {
       _calculatorSetting.changeScrollScreenState(true);
@@ -100,7 +104,6 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
       _calculatorSetting.changeScrollScreenState(false);
     }
 
-    //todo: here do
     return;
   }
 
@@ -115,7 +118,11 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
             builder: (context, calSetting, _) {
               return Listener(
                 onPointerUp: (event) async {
-                  await _enureVisibleRelatedWidget(event, calSetting);
+                  await _enureVisibleRelatedWidget(
+                    event,
+                    calSetting,
+                    event.position,
+                  );
                 },
                 onPointerDown: (event) {
                   _checkHeaderScrollingPosition(event.position);
@@ -136,15 +143,15 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                       //  mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        HeaderCalclutor(globalKey: _firstListener),
+                        HeaderCalclutor(globalKey: _headerKey),
 
                         calSetting.isScientificMode
                             ? ScientificCalculator(
-                                keyBoardKey: _secondListener,
+                                keypadKey: _keypadKey,
                                 calculatorSetting: calSetting,
                               )
                             : Column(
-                                key: _secondListener,
+                                key: _keypadKey,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Divider(),
@@ -224,9 +231,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                         textStyle: appTheme
                                             .textTheme
                                             .displaySmall!
-                                            .copyWith(
-                                              fontSize: 11.sw(context),
-                                            ),
+                                            .copyWith(fontSize: 11.sw(context)),
                                         // color: Colors.grey.shade100,
                                         btntext: '−',
                                       ),
@@ -280,9 +285,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                         textStyle: appTheme
                                             .textTheme
                                             .displayMedium!
-                                            .copyWith(
-                                              fontSize: 10.sw(context),
-                                            ),
+                                            .copyWith(fontSize: 10.sw(context)),
                                       ),
                                       Selector<ExpressionEvaluator, String>(
                                         selector: (_, expressionEvaluator) =>
@@ -292,12 +295,11 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
                                             (context, expreesionValue, child) {
                                               return EqualsButton(
                                                 onPressedEquals: () {
-                                                  
                                                   context
                                                       .read<
                                                         ExpressionEvaluator
                                                       >()
-                                                      .evlauteEndExpressionResult(
+                                                      .evalauteExpression(
                                                         expreesionValue,
                                                       );
                                                 },

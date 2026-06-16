@@ -9,15 +9,14 @@ import 'package:calculator/utils/extention.dart';
 
 class NumberButton extends StatelessWidget {
   const NumberButton({
-this.isCustomChar=false,
+    this.isCustomChar = false,
     required this.btntext,
 
     required this.textStyle,
-    super.key, 
-  
+    super.key,
   });
   final String btntext;
-    final bool isCustomChar;
+  final bool isCustomChar;
   final TextStyle textStyle;
 
   @override
@@ -51,7 +50,9 @@ this.isCustomChar=false,
               },
               child: Text(
                 btntext,
-                style:isCustomChar?textStyle: textStyle.copyWith(fontSize: 8.sw(context)),
+                style: isCustomChar
+                    ? textStyle
+                    : textStyle.copyWith(fontSize: 8.sw(context)),
                 textAlign: TextAlign.center,
               ),
             ),

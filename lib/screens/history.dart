@@ -10,17 +10,21 @@ class History extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-
-        }, icon: Icon(Icons.arrow_back)),
-       actions :[ IconButton(onPressed: () async {
-
-       await   HistoryProvider.deleteHistory();
-       if(context.mounted) Navigator.pop(context);
-      
-   
-        }, icon: Icon(Icons.delete))],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await HistoryProvider.deleteHistory();
+              if (context.mounted) Navigator.pop(context);
+            },
+            icon: Icon(Icons.delete),
+          ),
+        ],
         title: const Text('history'),
       ),
       body: SingleChildScrollView(
@@ -39,12 +43,18 @@ class History extends StatelessWidget {
                     alignment: AlignmentGeometry.centerRight,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [Text(  style: appTheme.textTheme.bodySmall,e.expression), Text(  style: appTheme.textTheme.bodySmall,e.result)],
+                      children: [
+                        Text(style: appTheme.textTheme.bodySmall, e.expression),
+                        Text(
+                          style: appTheme.textTheme.bodySmall,
+                          '=${e.result}',
+                        ),
+                      ],
                     ),
                   ),
                 ),
                 Text(''),
-                Divider()
+                Divider(),
               ],
             ),
           ),

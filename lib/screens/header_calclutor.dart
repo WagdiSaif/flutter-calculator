@@ -81,15 +81,21 @@ class HeaderCalclutor extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      value.$1.isEmpty
-                          ? "0"
-                          : value.$1.replaceAll('*', 'x').replaceAll("/", "÷"),
-                      style: appTheme.textTheme.displayLarge,
-                      maxLines: 1,
-                    ),
+                    //Show Expression
+                    value.$2.isEmpty
+                        ? Text(
+                            value.$1.isEmpty
+                                ? "0"
+                                : value.$1
+                                      .replaceAll('*', 'x')
+                                      .replaceAll("/", "÷"),
+                            style: appTheme.textTheme.displayLarge,
+                            maxLines: 1,
+                          )
+                        : SizedBox(),
                     value.$2.isNotEmpty ? SizedBox(height: 10) : SizedBox(),
-                    //results
+
+                    //Show Results
                     value.$2.isNotEmpty
                         ? Text(
                             value.$2,

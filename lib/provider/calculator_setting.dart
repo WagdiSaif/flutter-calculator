@@ -66,6 +66,4 @@ class CalculatorSetting extends ChangeNotifier {
     await Hive.openBox<HistoryItem>('HistoryItems');
     await Hive.openBox<bool>('ThemeState');
   }
-
- 
 }

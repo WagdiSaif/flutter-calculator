@@ -12,10 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ScientificCalculator extends StatelessWidget {
-  final GlobalKey keyBoardKey;
+  final GlobalKey keypadKey;
   final CalculatorSetting calculatorSetting;
   const ScientificCalculator({
-    required this.keyBoardKey,
+    required this.keypadKey,
     super.key,
     required this.calculatorSetting,
   });
@@ -23,7 +23,7 @@ class ScientificCalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      key: keyBoardKey,
+      key: keypadKey,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Divider(height: 9),
@@ -36,11 +36,12 @@ class ScientificCalculator extends StatelessWidget {
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
                 color: !calculatorSetting.checkIsDegree
                     ? Colors.grey[500]
-                    : calculatorSetting.isLightModeThemeState? Colors.black:Colors.white,
+                    : calculatorSetting.isLightModeThemeState
+                    ? Colors.black
+                    : Colors.white,
                 fontSize: 5.sw(context),
               ),
               degreeRadianMode: () {
-                
                 calculatorSetting.updatetSecondMode(
                   calculatorSetting.getSecondMode,
                 );
@@ -54,7 +55,9 @@ class ScientificCalculator extends StatelessWidget {
                 fontSize: 5.sw(context),
                 color: calculatorSetting.getSecondMode
                     ? Colors.grey[500]
-                    :calculatorSetting.isLightModeThemeState? Colors.black:Colors.white,
+                    : calculatorSetting.isLightModeThemeState
+                    ? Colors.black
+                    : Colors.white,
               ),
               btntext: calculatorSetting.checkIsDegree ? 'deg' : 'rad',
               degreeRadianMode: () {
@@ -86,8 +89,6 @@ class ScientificCalculator extends StatelessWidget {
                 fontSize: 5.sw(context),
               ),
             ),
-
-            // clor: Colors.grey.shade100,
           ],
         ),
 
@@ -97,18 +98,17 @@ class ScientificCalculator extends StatelessWidget {
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
                 fontSize: 5.sw(context),
               ),
-              // color: Colors.grey.shade100,
+
               btntext: 'xʸ',
             ),
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
                 fontSize: 5.sw(context),
               ),
-              // color: Colors.grey.shade100,
+
               btntext: 'lg',
             ),
             OperationButton(
-              // color: Colors.grey.shade100,
               btntext: 'ln',
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
                 fontSize: 5.sw(context),
@@ -154,17 +154,11 @@ class ScientificCalculator extends StatelessWidget {
             OperationButton(
               onPressedfun: () =>
                   context.read<ExpressionEvaluator>().removeLastCharacter(),
-              // color: Colors.grey.shade100,
+
               btntext: '⌫',
             ),
-            OperationButton(
-              // color: Colors.grey.shade100,
-              btntext: '%',
-            ),
-            OperationButton(
-              // color: Colors.grey.shade100,
-              btntext: '÷',
-            ),
+            OperationButton(btntext: '%'),
+            OperationButton(btntext: '÷'),
           ],
         ),
         Row(
@@ -245,10 +239,7 @@ class ScientificCalculator extends StatelessWidget {
               btntext: '3',
               textStyle: appTheme.textTheme.displayMedium!,
             ),
-            OperationButton(
-              // color: Colors.grey.shade100,
-              btntext: '+',
-            ),
+            OperationButton(btntext: '+'),
           ],
         ),
         Row(
@@ -260,14 +251,12 @@ class ScientificCalculator extends StatelessWidget {
                     .read<CalculatorSetting>()
                     .isScientificMode);
               },
-
-              // btntext: '+/-',
             ),
             OperationButton(
               textStyle: appTheme.textTheme.displayMedium!.copyWith(
                 fontSize: 7.sw(context),
               ),
-              // color: Colors.grey.shade100,
+
               btntext: 'e',
             ),
             NumberButton(
@@ -289,9 +278,9 @@ class ScientificCalculator extends StatelessWidget {
               builder: (context, expreesionValue, child) {
                 return EqualsButton(
                   onPressedEquals: () {
-                    context
-                        .read<ExpressionEvaluator>()
-                        .evlauteEndExpressionResult(expreesionValue);
+                    context.read<ExpressionEvaluator>().evalauteExpression(
+                      expreesionValue,
+                    );
                   },
                 );
               },

@@ -31,9 +31,9 @@ class AppTheme {
     displayMedium: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
 
     displaySmall: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
-   
+
     labelMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-   
+
     bodySmall: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
   );
 

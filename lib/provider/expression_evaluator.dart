@@ -147,7 +147,7 @@ class ExpressionEvaluator extends ChangeNotifier {
     notifyListeners();
   }
 
-  void evlauteEndExpressionResult(String inputExpression) {
+  void evalauteExpression(String inputExpression) {
     try {
       String input = _validateExpression(inputExpression);
       input = _handleBalanceParentheses(input);
@@ -180,6 +180,7 @@ class ExpressionEvaluator extends ChangeNotifier {
           : _formatResult(num.parse(resultExpression.toString()));
 
       _saveCalculationHistoryResults(historyInput, resultsEvaluator.toString());
+      setExpression = resultsEvaluator;
 
       notifyListeners();
     } on FormatException {

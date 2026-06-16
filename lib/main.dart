@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
       ],
       builder: (context, child) {
         return Selector<CalculatorSetting, bool>(
-   
           selector: (context, cal) => cal.isLightModeThemeState,
           builder: (context, _, _) {
             return MaterialApp(

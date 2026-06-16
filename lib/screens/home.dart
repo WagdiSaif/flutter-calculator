@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
 
       appBar: AppBar(
         centerTitle: true,
-     
+
         actions: [
           PopupMenuButton(
             itemBuilder: (contex) => [
@@ -43,9 +43,8 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-
         ],
-         title: IconButton(
+        title: IconButton(
           icon: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             transitionBuilder: (Widget child, Animation<double> animation) {
@@ -63,7 +62,8 @@ class _HomeState extends State<Home> {
                 .isLightModeThemeState;
             await context.read<CalculatorSetting>().updateThemeModeState();
           },
-        ),),
+        ),
+      ),
 
       //
       body: SimpleCalculator(),
